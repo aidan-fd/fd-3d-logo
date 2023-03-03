@@ -28,6 +28,7 @@
 
 			import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VertexNormalsHelper } from 'three/addons/helpers/VertexNormalsHelper.js';
 
 			let container, stats;
 
@@ -37,6 +38,7 @@
 
 			init();
 			animate();
+			
 			function init() {
 
 				container = document.createElement( 'div' );
@@ -80,6 +82,9 @@
 
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
+
+					const helper = new VertexNormalsHelper( mesh, 0.1, 0xff0000 );
+					scene.add( helper );
 
 					scene.add( mesh );
 
@@ -162,7 +167,7 @@
 				const timer = Date.now() * 0.0005;
 
 				// mesh && mesh.rotation.set(  0, timer, 0 ); // Spin the mesh
-				mesh && mesh.rotation.set(  0, Math.cos(timer) + 0.6, 0 ); // Yo-yo the mesh
+				// mesh && mesh.rotation.set(  0, Math.cos(timer) + 0.6, 0 ); // Yo-yo the mesh
 				
 				// Spin the camera 
 				// camera.position.x = Math.cos( timer ) * 3;

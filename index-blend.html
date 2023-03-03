@@ -162,7 +162,6 @@
 				directionalLight.shadow.camera.far = 4;
 
 				directionalLight.shadow.bias = - 0.002;
-                console.log(directionalLight.shadow.mapSize)
                 directionalLight.shadow.mapSize = new THREE.Vector2(2048,2048)
 
 			}
@@ -189,8 +188,8 @@
 
 				const timer = Date.now() * 0.0005;
 
-				//mesh && mesh.rotation.set(  0, timer, 0); // Spin mesh
-				mesh && mesh.rotation.set( 0, Math.cos(timer) + 0.6, 0 ); // yo-yo mesh
+				// mesh && mesh.rotation.set(  0, timer, 0); // Spin mesh
+				mesh && mesh.rotation.set( 0, Math.cos(timer) + 0.6, 0 ); // Yo-yo mesh
 
 				renderer.render( scene, camera );
 

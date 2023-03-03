@@ -12,3 +12,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - index-stl.html - the first version before smoothing.
 - index.html - the version create by the end of the 10% day.
 - index-blend.html - the final version using an SVG source and Blender. 
+
+## Normals view
+
+- index-stl-normals.html - the first version before smoothing.
+- index-normals.html - the version create by the end of the 10% day.
+- index-blend-normals.html - the final version using an SVG source and Blender. 
