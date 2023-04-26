@@ -49,6 +49,9 @@
 			import Stats from 'three/addons/libs/stats.module.js';
 
 			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+			import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+			import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 			let container, stats;
@@ -66,7 +69,7 @@
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 1, 15 );
-				camera.position.set( 2, 0.25, 3 );
+				camera.position.set( 3, 1.25, 3 );
 
 				cameraTarget = new THREE.Vector3( 0, - 0.10, 0 );
 				camera.lookAt( cameraTarget );
@@ -82,7 +85,7 @@
 					new THREE.MeshPhongMaterial( { color: 0x999999, specular: 0x101010 } )
 				);
 				plane.rotation.x = - Math.PI / 2;
-				plane.position.y = - 0.5;
+				plane.position.y = - 1.5;
 				scene.add( plane );
 
 				plane.receiveShadow = true;
@@ -92,13 +95,13 @@
 				const loader = new GLTFLoader();
 				const material = new THREE.MeshPhongMaterial( { color: 0x007bff, specular: 0x111111, shininess: 1000 } );
 
-				loader.load( './FanDuelRoster.glb', function ( gltf ) {
+				loader.load( './FanDuelRosterBevel.glb', function ( gltf ) {
 
-					mesh = new THREE.Mesh( gltf.scene.getObjectByName('FanduelRoster').geometry, material );
+					mesh = new THREE.Mesh( gltf.scene.getObjectByName('Curve').geometry, material );
+					mesh && mesh.rotation.set( -Math.PI / 2,  Math.PI  ,   Math.PI/1.5  ); // Yo-yo mesh
 
-					mesh.rotation.z = - Math.PI / 2;
-					mesh.position.set( 0, 0, 0 );
-					mesh.scale.set( 2, 1, 2 );
+					mesh.position.set( -3.5, -1.2, 0 );
+					mesh.scale.set( 80, 80, 80 );
 
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
@@ -112,8 +115,8 @@
 				scene.add( new THREE.HemisphereLight( 0x007bff, 0x222222 ) );
 
 				addShadowedLight( 1, 1, 1, 0xffffff, 1.35 );
-				addShadowedLight( 0.5, 1, -1, 0xffffff, 0.5 );
-				addShadowedLight( 0.5, 0, 1, 0xffffff, 0.6 );
+				addShadowedLight( 0.5, 1, -1, 0xffffff, 1.5 );
+				addShadowedLight( 0.5, 0, 1, 0xffffff, 1.6 );
 
 				// renderer
 
@@ -186,8 +189,10 @@
 
 				const timer = Date.now() * 0.0005;
 
-				//mesh && mesh.rotation.set(  0, timer, 0); // Spin mesh
-				mesh && mesh.rotation.set(  Math.PI / 2,0, Math.cos(timer) -0.35 ); // Yo-yo mesh
+				// mesh && mesh.rotation.set(  0, timer, 0); // Spin mesh
+				//mesh && mesh.rotation.set( -Math.PI / 2,  Math.PI / 2,  -Math.cos(timer) + 0.6 ); // Yo-yo mesh
+			//		mesh && mesh.rotation.set( -Math.PI / 2, - Math.PI ,   Math.PI / 2 ); // Yo-yo mesh
+				// mesh.rotation.set( - Math.PI / 2, Math.PI / 2, Math.PI / 2 );
 
 				renderer.render( scene, camera );
 
@@ -196,6 +201,7 @@
 		</script>
 	</body>
 </html>
+
 <!--
 
 This code is based on code from three.js - https://github.com/mrdoob/three.js/blob/dev/examples/webgl_loader_stl.html
